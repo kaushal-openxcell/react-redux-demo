@@ -1,0 +1,12 @@
+.textBox{
+  margin-top: 6px;
+}
+.textBox .MuiInputBase-root fieldset {
+  border: 1px solid #fff;
+}
+.textBox .Mui-focused fieldset {
+  border: 1px solid #FF7F00 !important;
+}
+.tNc.Mui-error h6{
+  color: #d32f2f;
+}
