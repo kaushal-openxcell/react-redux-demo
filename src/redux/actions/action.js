@@ -69,6 +69,34 @@ export function updateProfile(values) {
     }
 }
 
+export function createPost(values) {
+    return {
+        type: REDUX_ACTIONS_TYPES.POST.CREATE,
+        payload: values,
+    }
+}
+
+export function deletePost(values) {
+    return {
+        type: REDUX_ACTIONS_TYPES.POST.DELETE,
+        payload: values,
+    }
+}
+
+export function likePost(values) {
+    return {
+        type: REDUX_ACTIONS_TYPES.POST.LIKE,
+        payload: values,
+    }
+}
+
+export function dislikePost(values) {
+    return {
+        type: REDUX_ACTIONS_TYPES.POST.DISLIKE,
+        payload: values,
+    }
+}
+
 export function removeError() {
     return {
         type: REDUX_ACTIONS_TYPES.REMOVE_ERROR,

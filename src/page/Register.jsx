@@ -1,6 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react'
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import * as yup from 'yup';
 import * as validation from '../YupValidation';
@@ -10,7 +12,7 @@ import { RadioButtonUnchecked, CheckCircle, VisibilityOff, Visibility } from '@m
 import { BlueBox } from '../components/common/BlueBox'
 import registerImage from '../Assets/image/rocket.png'
 import defaultProfile from '../Assets/image/defaultProfile.png'
-import { UUID, TO_BASE_64 } from '../constants';
+import { TO_BASE_64 } from '../constants';
 import '../Assets/css/common.css';
 
 import { register } from '../redux/actions/action';
@@ -22,6 +24,7 @@ export const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleOnChange = async (event) => {
     const newImage = event.target?.files?.[0];
@@ -46,7 +49,7 @@ export const Register = () => {
   const onRegisterSubmit = async () => {
     try {
       const payload = {
-        id : UUID,
+        id : uuidv4(),
         first_name : formik.values.firstname,
         last_name : formik.values.lastname,
         email : formik.values.email,
@@ -59,6 +62,7 @@ export const Register = () => {
       formik.resetForm();
       _setImage(null);
       dispatch( register(payload) );
+      navigate('/login');
     } catch (e) {
       console.log('Error : ',e)
     }

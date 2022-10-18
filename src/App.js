@@ -16,6 +16,7 @@ import { Dashboard } from './page/Dashboard';
 import { ROUTER } from './constants';
 import { Profile } from './page/Profile';
 import { ChangePassword } from './page/ChangePassword';
+import { CreatePost } from './page/CreatePost';
 
 const theme = createTheme({
   palette: {
@@ -54,6 +55,7 @@ function App() {
               <Route path={ ROUTER.DASHBOARD } element={<Dashboard />} />
               <Route path={ ROUTER.PROFILE } element={<Profile />} />
               <Route path={ ROUTER.PASSWORD.CHANGE } element={<ChangePassword />} />
+              <Route path={ ROUTER.POST.CREATE } element={<CreatePost />} />
             </Routes>
           </div>
         </ThemeProvider>

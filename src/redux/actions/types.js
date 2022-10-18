@@ -3,7 +3,10 @@ export const REDUX_ACTIONS_TYPES = {
     LOGIN : 'LOGIN',
     LOGOUT : 'LOGOUT',
     POST : {
-        CREATE : 'CREATE_POST'
+        CREATE : 'CREATE_POST',
+        DELETE : 'DELETE_POST',
+        LIKE : 'LIKE_POST',
+        DISLIKE : 'DISLIKE_POST'
     },
     OTP : {
         SET : 'SET_OTP',

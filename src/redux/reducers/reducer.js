@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { RANDOM_NUMBER } from "../../constants";
 import { REDUX_ACTIONS_TYPES } from "../actions/types";
 
@@ -13,11 +14,23 @@ const initialState = {
       dob: '1997-01-01',
       gender: 'male',
       otp: '',
+    },
+    {
+      id: '35b2c57f-31f5-47eb-80c6-13d4b043b535',
+      first_name: 'Kaushal',
+      last_name: 'Adhiya',
+      email: 'kaushal1@mailinator.com',
+      phone: '8794546544',
+      password: '123456',
+      dob: '1997-01-01',
+      gender: 'male',
+      otp: '',
     }
   ],
   isUserLogIn : false,
   loggedInUser: '',
   error: false,
+  posts:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -86,8 +99,18 @@ const reducer = (state = initialState, action) => {
     case REDUX_ACTIONS_TYPES.UPDATE_PROFILE:
       return {
         ...state,
-        loggedInUser: {...state.loggedInUser, ...action.payload},
-        users:  state.users.map((user) => (user.id === action.payload.id) 
+        loggedInUser: {
+          ...state.loggedInUser,
+          first_name:action.payload.first_name,
+          last_name:action.payload.last_name,
+          email:action.payload.email,
+          phone:action.payload.phone,
+          dob:action.payload.dob,
+          gender:action.payload.gender,
+          profilePic:action.payload.profilePic
+        },
+        users:  state.users.map((user) => 
+          (user.id === action.payload.id)
           ? {
               ...user,
               first_name:action.payload.first_name,
@@ -101,6 +124,56 @@ const reducer = (state = initialState, action) => {
           : user
         )
       }
+    case REDUX_ACTIONS_TYPES.POST.CREATE:
+      const newPost = {
+        id: uuidv4(),
+        createdBy: state.loggedInUser.id,
+        createdDate: action.payload.createdDate,
+        createdTime: action.payload.createdTime,
+        post: action.payload.post,
+        media: action.payload.media,
+        likes: []
+      }
+      return {
+        ...state,
+        posts:[ newPost, ...state.posts]
+      }
+    case REDUX_ACTIONS_TYPES.POST.DELETE:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.payload.id)
+      }
+    case REDUX_ACTIONS_TYPES.POST.LIKE:
+      return {
+        ...state,
+        posts: state.posts.map((post) => 
+          (post.id === action.payload.id)
+          ?
+            {
+              ...post,
+              likes:[
+                action.payload.user_id,
+                ...post.likes
+              ]
+            }
+          :
+            post
+        )
+      }
+      case REDUX_ACTIONS_TYPES.POST.DISLIKE:
+        return {
+          ...state,
+          posts: state.posts.map((post) => 
+            (post.id === action.payload.id)
+            ?
+              {
+                ...post,
+                likes: post.likes.filter((user) => user !== action.payload.user_id)
+              }
+            :
+              post
+          )
+        }
     default:
       return state;
   }

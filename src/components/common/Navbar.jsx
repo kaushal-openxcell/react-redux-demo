@@ -16,7 +16,7 @@ export const Navbar = () => {
       p={2} 
       sx={{ position:'sticky', background: '#242F3A', top:0, justifyContent: 'space-between', zIndex:'100' }}
     >
-      <Link to='/' style={{ display:'flex', alignItems: 'center'}}>
+      <Link to={ state.isUserLogIn === false ? '/' : '/dashboard'} style={{ display:'flex', alignItems: 'center'}}>
         <img src={logo} alt='logo' height={25} />
       </Link>
       {
@@ -36,7 +36,7 @@ export const Navbar = () => {
         </Stack>
         :
         <Stack alignItems="right" direction="row" gap={2} mr={2}>
-          <Link to='/createPost' style={{ display:'flex', alignItems: 'center', textDecoration:'none'}}>
+          <Link to='/create-post' style={{ display:'flex', alignItems: 'center', textDecoration:'none'}}>
             <Button variant="outlined" color="neutral">
                 Create Post
             </Button>

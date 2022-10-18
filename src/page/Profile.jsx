@@ -7,7 +7,7 @@ import * as validation from '../YupValidation';
 
 import { Avatar, Box, Button, Divider, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, Stack, TextField, Typography } from "@mui/material"
 import ProfileIcon from '../Assets/image/profile-icon.png'
-import defaultPic from '../Assets/image/defaultProfile.png'
+import defaultPic from '../Assets/image/navbarUser.png'
 import { ProfileCard } from "../components/common/ProfileCard";
 import { TO_BASE_64 } from "../constants";
 
@@ -80,7 +80,7 @@ export const Profile = () => {
           <form style={{ paddingInline:'50px', width:'70%'}} onSubmit={formik.handleSubmit}>
             <Stack mt={3}>
               <Stack sx={{ display:'flex', flexDirection:'row'}}>
-                <Avatar alt="Profile Image" src={image || defaultPic} sx={{ width:'100px', height:'100px', border:'2px solid #979797' }}/>
+                <Avatar alt="Profile Image" src={image || defaultPic} sx={{ width:'100px', height:'100px', border:'2px solid #979797', background:'#E5E5E5' }}/>
                 <Box sx={{ display:'flex', alignItems:'center'}} pl={4}>
                   <Button variant='outlined' component="label" sx={{ color:'#333', borderColor:'#333', '&:hover':{ borderColor:'#333' } }}>
                     Upload Image 

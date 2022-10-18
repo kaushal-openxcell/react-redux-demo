@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/actions/action';
 import { Button, Avatar, Box, Stack, Typography } from '@mui/material'
-import defaultPic from '../../Assets/image/defaultProfile.png'
+import defaultPic from '../../Assets/image/navbarUser.png'
 import { EmailOutlined, CallOutlined, MaleOutlined, FemaleOutlined, CakeOutlined } from '@mui/icons-material';
 
 export const ProfileCard = ({ user, flex, }) => {
@@ -15,7 +15,7 @@ export const ProfileCard = ({ user, flex, }) => {
   }
   return (
     <Box sx={{ flex:flex, display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', boxSizing:'border-box' }} className='box' p={1} gap={4}>
-      <Avatar src={user.profilePic ? user.profilePic : defaultPic} sx={{ width:"150px", height:"150px" }}/>
+      <Avatar src={user.profilePic ? user.profilePic : defaultPic} sx={{ width:"150px", height:"150px", background:'#E5E5E5' }}/>
       <Typography variant="h6" fontWeight="bold">
         {user.first_name} {user.last_name}
       </Typography>
